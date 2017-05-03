@@ -59,6 +59,9 @@ public class StatisticsLogger
 		string localFileName = filename;
 		int numberOfLogs = 0;
 
+		if(!Directory.Exists("logs"))
+			Directory.CreateDirectory("logs");
+			
 		do {
 			localFileName = filename + numberOfLogs;
 			//localFileName.Insert(localFileName.IndexOf("."), numberOfLogs.ToString());
