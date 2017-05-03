@@ -54,9 +54,23 @@ public class StatisticsLogger
 	}
 
 	//writes to file
-	public void FinalLog ()
+	public void FinalLog (float mutationProbability, float crossoverProbability, int tournamentSize, int typeOfIndividual, int mutationType)
 	{
-		logger = File.CreateText (filename);
+		string localFileName = filename;
+		int numberOfLogs = 0;
+
+		do {
+			localFileName = filename + numberOfLogs;
+			//localFileName.Insert(localFileName.IndexOf("."), numberOfLogs.ToString());
+			numberOfLogs++;
+			Debug.Log (localFileName + ".txt");
+			Debug.Log(File.Exists ("logs/" + localFileName + ".txt"));
+		} while(File.Exists ("logs/" + localFileName + ".txt"));
+		localFileName = localFileName + ".txt";
+
+		logger = File.CreateText ("logs/" + localFileName);
+
+		logger.WriteLine ("Type of Individual: " + typeOfIndividual + "\nMutationType: " + mutationType + "\nMutation probability: " + mutationProbability + "\nCrossover probability: " + crossoverProbability + "\nTournament size: " + tournamentSize);
 
 		//writes with the following format: generation, bestfitness, meanfitness, standardFitness
 		for (int i = 0; i < bestFitness.Count; i++) {

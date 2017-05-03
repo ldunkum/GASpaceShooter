@@ -29,7 +29,7 @@ public class EvolutionState : MonoBehaviour
 	public int preservedIndividualsElitism;
 	//ELITISM
 	public int tournamentSize = 0;
-	public string statsFilename = "log.txt";
+	private string statsFilename = "log";
 	public StatisticsLogger stats;
 	public IndividualType typeOfIndividual = IndividualType.Example;
 	public MutationType mutationType;
@@ -156,7 +156,7 @@ public class EvolutionState : MonoBehaviour
 	public void FinalLog ()
 	{
 		stats.GenLog (population, generation);
-		stats.FinalLog ();
+		stats.FinalLog (mutationProbability, crossoverProbability, tournamentSize, (int)typeOfIndividual, (int)mutationType);
 	}
 
 }
