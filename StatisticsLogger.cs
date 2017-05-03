@@ -63,8 +63,8 @@ public class StatisticsLogger
 			localFileName = filename + numberOfLogs;
 			//localFileName.Insert(localFileName.IndexOf("."), numberOfLogs.ToString());
 			numberOfLogs++;
-			Debug.Log (localFileName + ".txt");
-			Debug.Log(File.Exists ("logs/" + localFileName + ".txt"));
+			//Debug.Log (localFileName + ".txt");
+			//Debug.Log(File.Exists ("logs/" + localFileName + ".txt"));
 		} while(File.Exists ("logs/" + localFileName + ".txt"));
 		localFileName = localFileName + ".txt";
 
