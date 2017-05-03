@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0611ed5a5c84d421f985df2e3dfdace2
+timeCreated: 1491606815
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - gamectrl: {instanceID: 0}
+  - simprefab: {fileID: 1658682478776258, guid: 5d9d0e2c0e7c649078dc12332c15c44d,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
