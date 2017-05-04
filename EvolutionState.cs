@@ -166,7 +166,7 @@ public class EvolutionState : MonoBehaviour
 	public void FinalLog ()
 	{
 		stats.GenLog (population, generation);
-		stats.FinalLog (mutationProbability, crossoverProbability, tournamentSize, (int)typeOfIndividual, (int)mutationType);
+		stats.FinalLog (mutationProbability, crossoverProbability, tournamentSize, (int)typeOfIndividual, (int)mutationType, (int)crossoverType);
 	}
 
 }

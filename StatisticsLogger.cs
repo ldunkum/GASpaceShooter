@@ -54,13 +54,13 @@ public class StatisticsLogger
 	}
 
 	//writes to file
-	public void FinalLog (float mutationProbability, float crossoverProbability, int tournamentSize, int typeOfIndividual, int mutationType)
+	public void FinalLog (float mutationProbability, float crossoverProbability, int tournamentSize, int typeOfIndividual, int mutationType, int crossoverType)
 	{
 		string localFileName = filename;
 		int numberOfLogs = 0;
 
-		if(!Directory.Exists("logs"))
-			Directory.CreateDirectory("logs");
+		if (!Directory.Exists ("logs"))
+			Directory.CreateDirectory ("logs");
 			
 		do {
 			localFileName = filename + numberOfLogs;
