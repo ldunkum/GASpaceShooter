@@ -30,7 +30,6 @@ public class TournamentSelection : SelectionMethod
 	{
 		List<Individual> selectedInds = new List<Individual> ();
 		int popsize = oldpop.Count;
-		int counter = 0;
 
 		for (int i = 0; i < num; i++) {
 			//make sure selected individuals are different
@@ -42,17 +41,9 @@ public class TournamentSelection : SelectionMethod
 
 			if (Random.Range (0f, 1f) < k) {
 				if (ind.Fitness > ind2.Fitness) {
-//					if (counter < 10) {
-//						Debug.Log ("Ind 1 is fitter\n" + "Fitness of Ind 1: " + ind.Fitness + "    \nFitness of Ind 2: " + ind2.Fitness);
-//						counter++;	
-//					}
 
 					selectedInds.Add (ind.Clone ());
 				} else {
-//					if (counter < 10) {
-//						Debug.Log ("Ind 2 is fitter\n" + "Fitness of Ind 1: " + ind.Fitness + "    \nFitness of Ind 2: " + ind2.Fitness);
-//						counter++;	
-//					}
 					selectedInds.Add (ind2.Clone ());
 				}
 			} else {

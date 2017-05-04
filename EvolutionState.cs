@@ -144,7 +144,7 @@ public class EvolutionState : MonoBehaviour
 			}
 
 			//ELITISM
-			List<Individual> elitismIndividuals = new List<Individual> ();
+			//List<Individual> elitismIndividuals = new List<Individual> ();
 
 
 			//sort population by fitness

@@ -8,7 +8,6 @@ public class ExampleIndividual : Individual
 {
 
 	public int multiplier = 10;
-	public int n_cuts;
 
 	private int chromosomeSize;
 	private int[] chromosome1;
@@ -161,7 +160,7 @@ public class ExampleIndividual : Individual
 		}
 	}
 	*/
-
+	/* FLAWED IMPLEMENTATION
 	void nCrossover (Individual partner, float probability, int cutsNum)
 	{
 		int[] cutoffpoints = new int[cutsNum];
@@ -176,6 +175,6 @@ public class ExampleIndividual : Individual
 			counter++;
 		}
 	}
-
+	*/
 
 }
