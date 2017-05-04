@@ -7,16 +7,16 @@ public class TournamentSelection : SelectionMethod
 
 	//********************************HOW IT WORKS:*****************************
 	//
-	float k = 1f;
+	public float k = 1f;
 	//How many parents should be allowed to compete is the value of k
 	//The most common value for k seems to be = 2 so that you return good individuals more often than bad ones
 	//But in such a way that it doesn't keep picking the same individuals over and over again
 
 
 	//int k = 2;
-	public TournamentSelection () : base ()
+	public TournamentSelection (float k) : base ()
 	{
-		k = 1f;
+		this.k = k;
 	}
 
 

@@ -9,10 +9,17 @@
 	protected float fitness;
 	protected bool evaluated;
 	protected int mutationType = 3;
+	protected int crossoverType = 1;
+	public int n_cuts;
 
 	public int MutationType {
 		get { return mutationType; }
 		set { mutationType = value; }
+	}
+
+	public int CrossoverType {
+		get { return crossoverType; }
+		set { crossoverType = value; }
 	}
 
 	public int Size {

@@ -17,6 +17,12 @@ public enum MutationType
 	FullBitFlip
 }
 
+public enum CrossoverType
+{
+	onePoint,
+	nPoint
+}
+
 public class EvolutionState : MonoBehaviour
 {
 	public int individualSize;
@@ -29,10 +35,12 @@ public class EvolutionState : MonoBehaviour
 	public int preservedIndividualsElitism;
 	//ELITISM
 	public int tournamentSize = 0;
+	public float tournamentK = 1;
 	private string statsFilename = "log";
 	public StatisticsLogger stats;
 	public IndividualType typeOfIndividual = IndividualType.Example;
 	public MutationType mutationType;
+	public CrossoverType crossoverType;
 
 	protected List<Individual> population;
 	protected SelectionMethod selection;
@@ -68,7 +76,7 @@ public class EvolutionState : MonoBehaviour
 		stats = new StatisticsLogger (statsFilename);
 	
 		if (tournamentSize == 0)
-			selection = new TournamentSelection ();
+			selection = new TournamentSelection (tournamentK);
 		else if (tournamentSize > 0) {
 			selection = new TournamentSelectionWithTSize (tournamentSize);
 		}
@@ -120,6 +128,8 @@ public class EvolutionState : MonoBehaviour
 			for (int i = 0; i < populationSize - preservedIndividualsElitism; i += 2) {
 				Individual parent1 = new_pop [i];
 				Individual parent2 = new_pop [i + 1];
+				parent1.n_cuts = N_cutsCrossover;
+				parent1.CrossoverType = (int)crossoverType;
 				parent1.Crossover (parent2, crossoverProbability);
 			}
 

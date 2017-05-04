@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ExampleIndividual : Individual
 {
@@ -34,11 +35,47 @@ public class ExampleIndividual : Individual
 
 	public override void Mutate (float probability)
 	{
-
+		if (mutationType == 0) {
+			for (int i = 0; i < chromosomeSize; i++) {
+				if (Random.Range (0f, 1f) < probability) {
+					chromosome1 [i] = Random.Range (-1, 2);
+					chromosome2 [i] = (Random.Range (0, 2) == 1);
+				}
+			}
+		} else {
+			throw System.NotImplementedException ();
+		}
 	}
 
 	public override void Crossover (Individual partner, float probability)
 	{
+		//N_Point Crossover
+		//Basic theory: 
+		//1: random probability of happening the crossover between 0f and 1f
+		//Loop through all chromossome pairs
+		//Pick a random position to cut (n_cuts) ---------> should be dynamically changed in Unity, not in the code
+		//Create 2 new chromossomes with the two parts cut (Clone?)
+		ExampleIndividual examplePartner = (ExampleIndividual)partner;
+		if (UnityEngine.Random.Range (0f, 1f) > probability) {
+			return;
+		}
+		int crossoverPoint = Mathf.FloorToInt (chromosomeSize / (n_cuts + 1));
+
+		for (int i = crossoverPoint; i < chromosomeSize; i += 2 * crossoverPoint) {
+			for (int j = i; j < chromosomeSize && j < i + crossoverPoint; j++) {
+				int temp1 = chromosome1 [j];
+				bool temp2 = chromosome2 [j];
+				chromosome1 [j] = examplePartner.chromosome1 [j];
+				chromosome2 [j] = examplePartner.chromosome2 [j];
+
+				examplePartner.chromosome1 [j] = temp1;
+				examplePartner.chromosome2 [j] = temp2;
+
+			}
+		}
+
+
+		
 	}
 
 	public override void Translate ()
@@ -124,6 +161,21 @@ public class ExampleIndividual : Individual
 		}
 	}
 	*/
+
+	void nCrossover (Individual partner, float probability, int cutsNum)
+	{
+		int[] cutoffpoints = new int[cutsNum];
+
+		int counter = 0;
+		while (cutoffpoints [cutsNum - 1] == null) {
+			cutoffpoints [counter] = Random.Range (0, chromosomeSize);
+			bool isRepeated = cutoffpoints.Length != cutoffpoints.Distinct ().Count ();
+			while (isRepeated) {
+				cutoffpoints [counter] = Random.Range (0, chromosomeSize);
+			}
+			counter++;
+		}
+	}
 
 
 }
