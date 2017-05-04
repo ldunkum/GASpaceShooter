@@ -43,7 +43,7 @@ public class ExampleIndividual : Individual
 				}
 			}
 		} else {
-			throw System.NotImplementedException ();
+			throw new System.NotImplementedException ();
 		}
 	}
 
