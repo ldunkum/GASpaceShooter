@@ -73,7 +73,7 @@ public class StatisticsLogger
 
 		logger = File.CreateText ("logs/" + localFileName);
 
-		logger.WriteLine ("Type of Individual: " + typeOfIndividual + "\nMutationType: " + mutationType + "\nMutation probability: " + mutationProbability + "\nCrossover probability: " + crossoverProbability + "\nTournament size: " + tournamentSize);
+		logger.WriteLine ("Type of Individual: " + typeOfIndividual + "\nMutationType: " + mutationType + "\nCrossoverType: " + crossoverType + "\nMutation probability: " + mutationProbability + "\nCrossover probability: " + crossoverProbability + "\nTournament size: " + tournamentSize);
 
 		//writes with the following format: generation, bestfitness, meanfitness, standardFitness
 		for (int i = 0; i < bestFitness.Count; i++) {
