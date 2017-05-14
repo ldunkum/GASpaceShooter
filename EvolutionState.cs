@@ -32,15 +32,15 @@ public class EvolutionState : MonoBehaviour
 	public float mutationProbability;
 	public float crossoverProbability;
 	public int N_cutsCrossover;
-	public int preservedIndividualsElitism;
+	public int preservedIndividualsElitism = 2;
 	//ELITISM
 	public int tournamentSize = 0;
 	public float tournamentK = 1;
-	private string statsFilename = "log";
+	public string statsFilename = "log";
 	public StatisticsLogger stats;
-	public IndividualType typeOfIndividual = IndividualType.Example;
-	public MutationType mutationType;
-	public CrossoverType crossoverType;
+	public IndividualType typeOfIndividual = IndividualType.BitFlip;
+	public MutationType mutationType = MutationType.FullBitFlip;
+	public CrossoverType crossoverType = CrossoverType.onePoint;
 
 	protected List<Individual> population;
 	protected SelectionMethod selection;
@@ -74,7 +74,7 @@ public class EvolutionState : MonoBehaviour
 		generation = 0;
 
 		stats = new StatisticsLogger (statsFilename);
-	
+
 		if (tournamentSize == 0)
 			selection = new TournamentSelection (tournamentK);
 		else if (tournamentSize > 0) {
