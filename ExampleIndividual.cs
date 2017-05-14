@@ -54,7 +54,10 @@ public class ExampleIndividual : Individual
 		//Loop through all chromossome pairs
 		//Pick a random position to cut (n_cuts) ---------> should be dynamically changed in Unity, not in the code
 		//Create 2 new chromossomes with the two parts cut (Clone?)
-		ExampleIndividual examplePartner = (ExampleIndividual)partner;
+		ExampleIndividual bitFlipPartner = (ExampleIndividual)partner;
+
+		//Debug.Log (n_cuts + " cuts");
+
 		if (UnityEngine.Random.Range (0f, 1f) > probability) {
 			return;
 		}
@@ -64,11 +67,11 @@ public class ExampleIndividual : Individual
 			for (int j = i; j < chromosomeSize && j < i + crossoverPoint; j++) {
 				int temp1 = chromosome1 [j];
 				bool temp2 = chromosome2 [j];
-				chromosome1 [j] = examplePartner.chromosome1 [j];
-				chromosome2 [j] = examplePartner.chromosome2 [j];
+				chromosome1 [j] = bitFlipPartner.chromosome1 [j];
+				chromosome2 [j] = bitFlipPartner.chromosome2 [j];
 
-				examplePartner.chromosome1 [j] = temp1;
-				examplePartner.chromosome2 [j] = temp2;
+				bitFlipPartner.chromosome1 [j] = temp1;
+				bitFlipPartner.chromosome2 [j] = temp2;
 
 			}
 		}
@@ -98,7 +101,7 @@ public class ExampleIndividual : Individual
 
 		new_ind.fitness = 0.0f;
 		new_ind.evaluated = false;
-		new_ind.trackPoints = new Dictionary<float,float> (this.trackPoints);
+		//new_ind.trackPoints = new Dictionary<float,float> (this.trackPoints);
 
 		return new_ind;
 	}
