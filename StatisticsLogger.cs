@@ -77,15 +77,15 @@ public class StatisticsLogger
 
 		//writes with the following format: generation, bestfitness, meanfitness, standardFitness
 		for (int i = 0; i < bestFitness.Count; i++) {
-			logger.WriteLine (i + "," + bestFitness [i] + "," + meanFitness [i] + "," + standardFitness [i]);
+			logger.WriteLine (i + " : " + bestFitness [i] + " : " + worstFitness [i] + " : " + meanFitness [i] + " : " + standardFitness [i]);
 		}
 
 
 		//worstFitness
-		for (int i = 0; i < worstFitness.Count; i++) {
+		/*for (int i = 0; i < worstFitness.Count; i++) {
 			logger.WriteLine (i + "," + worstFitness [i] + "," + meanFitness [i] + "," + standardFitness [i]);
 		}
-
+		*/
 		logger.Close ();
 	}
 }

@@ -28,7 +28,7 @@ public class TournamentSelectionWithTSize : SelectionMethod
 
 			}
 			tournament.Sort ((x, y) => y.Fitness.CompareTo (x.Fitness));
-			selectedInds.Add (tournament [0].Clone());
+			selectedInds.Add (tournament [0].Clone ());
 		}
 		return selectedInds;
 	}

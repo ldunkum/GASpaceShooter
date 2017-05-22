@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;        
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 
-public class SimulationInfo 
+public class SimulationInfo
 {
 	public GameObject sim;
 	public GameController gamec;
 	public PlayerController playerc;
 
-	public SimulationInfo(GameObject sim, GameController gamec, PlayerController playerc){
+	public SimulationInfo (GameObject sim, GameController gamec, PlayerController playerc)
+	{
 		this.sim = sim;
 		this.gamec = gamec;
 		this.playerc = playerc;
 	}
 
 }
+
 public class EvolvingSpaceShooter : MonoBehaviour
 {
-	public static EvolvingSpaceShooter instance = null;              
+	public static EvolvingSpaceShooter instance = null;
   
 	public GameObject simPrefab;
 
@@ -42,16 +44,15 @@ public class EvolvingSpaceShooter : MonoBehaviour
 	private bool allFinished = false;
 
 	//Awake is always called before any Start functions
-	void Awake()
+	void Awake ()
 	{
 		if (instance == null) {
 			instance = this;
-		}
-		else if (instance != this) {
+		} else if (instance != this) {
 			Destroy (gameObject);    
 		}
 
-		DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad (gameObject);
 
 		scoreText.text = "";
 		if (restartText) {
@@ -62,7 +63,7 @@ public class EvolvingSpaceShooter : MonoBehaviour
 			gameOverText.text = "";
 		}
 
-		evolEngine= this.GetComponentInParent<EvolutionState> ();
+		evolEngine = this.GetComponentInParent<EvolutionState> ();
 
 		BatchmodeConfig.HandleArgs (evolEngine, this);
 
@@ -71,7 +72,7 @@ public class EvolvingSpaceShooter : MonoBehaviour
 
 		evolEngine.populationSize = 50;
 		evolEngine.individualSize = lvl.calcNumberOfMoves ();
-		evolEngine.InitPopulation();
+		evolEngine.InitPopulation ();
 
 		init ();
 	}
@@ -93,10 +94,10 @@ public class EvolvingSpaceShooter : MonoBehaviour
 		int cols_done = 0;
 		for (int i = -5; cols_done < cols; i++, cols_done++) {
 			for (int j = 0; j < lines; j++) {
-				GameObject tmp = Instantiate(simPrefab, transform.position + new Vector3(i * game_width, 0, j * -game_height ), transform.rotation);
-				simsInfo.Add(new SimulationInfo( tmp, 
-					tmp.GetComponentInChildren<GameController>(),
-					tmp.GetComponentInChildren<PlayerController>())
+				GameObject tmp = Instantiate (simPrefab, transform.position + new Vector3 (i * game_width, 0, j * -game_height), transform.rotation);
+				simsInfo.Add (new SimulationInfo (tmp, 
+					tmp.GetComponentInChildren<GameController> (),
+					tmp.GetComponentInChildren<PlayerController> ())
 				);
 
 			}
@@ -105,20 +106,22 @@ public class EvolvingSpaceShooter : MonoBehaviour
 	}
 
 
-	public void initSimulations(){
-		int index = 0 ;
+	public void initSimulations ()
+	{
+		int index = 0;
 		foreach (SimulationInfo info in simsInfo) {
 			info.gamec.id = index;
 			info.gamec.lvl = lvl;
-			info.gamec.spawnValues.y = 0 ;
-			info.gamec.spawnValues.z = 20 ;
+			info.gamec.spawnValues.y = 0;
+			info.gamec.spawnValues.z = 20;
 			info.gamec.running = false;
 			info.gamec.enabled = true;
 			index++;
 		}
 	}
 
-	public void updatePlayers(){
+	public void updatePlayers ()
+	{
 		
 		foreach (SimulationInfo info in simsInfo) {
 		
@@ -131,7 +134,7 @@ public class EvolvingSpaceShooter : MonoBehaviour
 			
 	}
 
-	public void startSimulations()
+	public void startSimulations ()
 	{
 		foreach (SimulationInfo info in simsInfo) {
 			info.gamec.initGame ();
@@ -141,25 +144,26 @@ public class EvolvingSpaceShooter : MonoBehaviour
 		}
 	}
 
-	void initBestSim(){
+	void initBestSim ()
+	{
 		mainCamera.enabled = false;
 		bestCamera.enabled = true;
 		bestFinished = false;
 
-		GameObject bestSim = Instantiate(simPrefab, transform.position, transform.rotation);
+		GameObject bestSim = Instantiate (simPrefab, transform.position, transform.rotation);
 
 
-		bestSimInfo = new SimulationInfo(
+		bestSimInfo = new SimulationInfo (
 			bestSim,
-			bestSim.GetComponentInChildren<GameController>(),
-			bestSim.GetComponentInChildren<PlayerController>()
+			bestSim.GetComponentInChildren<GameController> (),
+			bestSim.GetComponentInChildren<PlayerController> ()
 		);
 
 		bestSimInfo.playerc.testIndividual = evolEngine.Best;
 		bestSimInfo.gamec.id = 1337;
 		bestSimInfo.gamec.lvl = lvl;
-		bestSimInfo.gamec.spawnValues.y = 0 ;
-		bestSimInfo.gamec.spawnValues.z = 20 ;
+		bestSimInfo.gamec.spawnValues.y = 0;
+		bestSimInfo.gamec.spawnValues.z = 20;
 		bestSimInfo.gamec.running = true;
 		bestSimInfo.gamec.enabled = true;
 
@@ -170,7 +174,8 @@ public class EvolvingSpaceShooter : MonoBehaviour
 		bestSimInfo.playerc.running = true;
 	}
 
-	public void Update(){
+	public void Update ()
+	{
 		int i = 0;
 		sims_done = 0;
 		foreach (SimulationInfo info in simsInfo) {
@@ -195,8 +200,9 @@ public class EvolvingSpaceShooter : MonoBehaviour
 
 		restartText.text = "Generation: " + evolEngine.generation + "/" + evolEngine.numGenerations + "\nSims Done: " + sims_done + " / " + simsInfo.Count;
 	}
-		
-	public void FixedUpdate(){
+
+	public void FixedUpdate ()
+	{
 		if (sims_done == simsInfo.Count && bestFinished) {
 			if (evolEngine.generation < evolEngine.numGenerations) {
 
@@ -225,9 +231,10 @@ public class EvolvingSpaceShooter : MonoBehaviour
 
 	}
 
-	void init(){
+	void init ()
+	{
 		createSimulationGrid (evolEngine.populationSize);
-		initSimulations();
+		initSimulations ();
 		updatePlayers ();
 		startSimulations ();
 	}
