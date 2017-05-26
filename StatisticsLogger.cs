@@ -54,7 +54,7 @@ public class StatisticsLogger
 	}
 
 	//writes to file
-	public void FinalLog (float mutationProbability, float crossoverProbability, int tournamentSize, int typeOfIndividual, int mutationType, int crossoverType)
+	public void FinalLog (float mutationProbability, float crossoverProbability, int tournamentSize, int typeOfIndividual, int mutationType, int crossoverType, int preservedIndividuals, int n_cuts)
 	{
 		string localFileName = filename;
 		int numberOfLogs = 0;
@@ -73,7 +73,7 @@ public class StatisticsLogger
 
 		logger = File.CreateText ("logs/" + localFileName);
 
-		logger.WriteLine ("Type of Individual: " + typeOfIndividual + "\nMutationType: " + mutationType + "\nCrossoverType: " + crossoverType + "\nMutation probability: " + mutationProbability + "\nCrossover probability: " + crossoverProbability + "\nTournament size: " + tournamentSize);
+		logger.WriteLine ("Type of Individual: " + typeOfIndividual + "\nMutationType: " + mutationType + "\nCrossoverType: " + crossoverType + "\nn_cuts: " + n_cuts + "\nPreserved Individuals: " + preservedIndividuals + "\nMutation probability: " + mutationProbability + "\nCrossover probability: " + crossoverProbability + "\nTournament size: " + tournamentSize);
 
 		//writes with the following format: generation, bestfitness, meanfitness, standardFitness
 		for (int i = 0; i < bestFitness.Count; i++) {

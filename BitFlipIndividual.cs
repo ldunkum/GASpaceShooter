@@ -130,11 +130,24 @@ public class BitFlipIndividual : Individual
 		int firstIntMutationSwapElement = Random.Range (0, chromosomeSize - 1);
 		int secondIntMutationSwapElement = firstIntMutationSwapElement;
 
+		while (secondIntMutationSwapElement == firstIntMutationSwapElement)
+			secondIntMutationSwapElement = Random.Range (0, chromosomeSize - 1);
+
 		int firstBoolMutationSwapElement = Random.Range (0, chromosomeSize - 1);
 		int secondBoolMutationSwapElement = firstBoolMutationSwapElement;
-		//while (secondMutationSwapElement == firstMutationSwapElement)
-		//	secondMutationSwapElement = Random.Range (0, chromosomeSize - 1);	
+		while (secondBoolMutationSwapElement == firstBoolMutationSwapElement)
+			secondBoolMutationSwapElement = Random.Range (0, chromosomeSize - 1);
 
+		int tempInt = chromosome1 [firstIntMutationSwapElement];
+		bool tempBool = chromosome2 [firstBoolMutationSwapElement];
+
+		chromosome1 [firstIntMutationSwapElement] = chromosome1 [secondIntMutationSwapElement];
+		chromosome1 [secondIntMutationSwapElement] = tempInt;
+
+		chromosome2 [firstBoolMutationSwapElement] = chromosome2 [secondBoolMutationSwapElement];
+		chromosome2 [secondBoolMutationSwapElement] = tempBool;
+
+		/*
 		int chromosomeCounter = 0;
 		while (chromosome1 [firstIntMutationSwapElement] == chromosome1 [secondIntMutationSwapElement]) {
 			secondIntMutationSwapElement = Random.Range (0, chromosomeSize - 1);
@@ -159,7 +172,7 @@ public class BitFlipIndividual : Individual
 					}
 */
 
-
+/*
 			chromosomeCounter++;
 		}
 		chromosomeCounter = 0;
@@ -174,6 +187,8 @@ public class BitFlipIndividual : Individual
 
 			chromosomeCounter++;
 		}
+
+	*/
 	}
 
 	private void fullBitFlipMutation (float probability)

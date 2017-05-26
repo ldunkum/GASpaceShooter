@@ -44,6 +44,8 @@ public class BatchmodeConfig
 						(float v) => engine.tournamentK = v
 					}, {"n_cuts=", "number of cuts in the n-crossover",
 						(int v) => engine.N_cutsCrossover = v	
+					}, {"elitism=", "number of preserved individuals",
+						(int v) => engine.preservedIndividualsElitism = v
 					}, {"log=", "the logger output filename to use.",	
 						v => engine.statsFilename = v
 					}, { "h|help",  "show this message and exit", 

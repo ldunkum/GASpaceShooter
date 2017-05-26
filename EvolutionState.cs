@@ -31,7 +31,7 @@ public class EvolutionState : MonoBehaviour
 	public int populationSize;
 	public float mutationProbability;
 	public float crossoverProbability;
-	public int N_cutsCrossover;
+	public int N_cutsCrossover = 0;
 	public int preservedIndividualsElitism = 2;
 	//ELITISM
 	public int tournamentSize = 0;
@@ -166,7 +166,7 @@ public class EvolutionState : MonoBehaviour
 	public void FinalLog ()
 	{
 		stats.GenLog (population, generation);
-		stats.FinalLog (mutationProbability, crossoverProbability, tournamentSize, (int)typeOfIndividual, (int)mutationType, (int)crossoverType);
+		stats.FinalLog (mutationProbability, crossoverProbability, tournamentSize, (int)typeOfIndividual, (int)mutationType, (int)crossoverType, preservedIndividualsElitism, N_cutsCrossover);
 	}
 
 }
